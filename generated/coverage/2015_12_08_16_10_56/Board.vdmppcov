@@ -1,0 +1,33 @@
+class Board
+types
+	public Player = <Black> | <Red>;
+values
+	public FILES = 9; -- width
+	public RANKS = 10; --length
+instance variables
+	private currentPlayer: Player := <Black>;
+	private board: map seq of nat1 to [Piece] := {|->};
+operations
+ public Board : () ==> Board
+  Board() ==
+  (
+  	board := {
+  	  [5,1] |-> new General([5,1],<Red>)
+  	};
+  );
+	public moveTo: seq of nat1 * seq of nat1 ==> ()
+	moveTo(coord1,coord2) ==(
+		dcl pc1: Piece := board(coord1); 
+		board := board ++ { coord1 |-> nil};
+		board := board ++ { coord2 |-> pc1 };
+	)
+	pre coord1 <> coord2 and board(coord1) <> nil; --verificar cordandas dentro ods limites
+	public getPiece : seq of nat1 ==> Piece
+	getPiece(coord) ==
+		return board(coord);
+		
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Board

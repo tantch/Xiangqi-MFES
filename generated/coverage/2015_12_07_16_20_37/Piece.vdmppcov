@@ -1,0 +1,27 @@
+class Piece
+types
+	public Color = <Black> | <Red>;
+values
+	
+instance variables
+	private color: Color;
+	private x: nat1;
+	private y: nat1;
+operations
+	public Piece : seq of nat1 * Color ==> Piece
+	Piece(coord,clr) ==(
+		x := coord(0);
+		y := coord(1);
+		color := clr;
+	);
+	public getColor : () ==> Color 
+  getColor() ==
+  	return color;
+  public canMoveTo : seq of nat1 ==> bool
+  canMoveTo(coor) ==
+  	is subclass responsibility
+functions
+
+traces
+-- TODO Define Combinatorial Test Traces here
+end Piece
