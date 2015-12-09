@@ -14,9 +14,7 @@ operations
   Board() ==
   (
   	board := {
-  		[4,1] |-> new Advisor([4,1],<Red>),
-  		[5,1] |-> new General([5,1],<Red>),
-  	  [6,1] |-> new Advisor([6,1],<Red>)
+  	  [5,1] |-> new General([5,1],<Red>)
   	};
   );
 	
