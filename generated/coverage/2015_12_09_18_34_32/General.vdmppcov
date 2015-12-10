@@ -36,12 +36,6 @@ operations
 			coord := a_coord
 		)
 	pre a_coord <> coord;
-	public freeToMove : seq of nat1 * Board ==> bool
-	freeToMove(a_coord,board) == (
-
-			return true;
-
-	);
 functions
 -- TODO Define functiones here
 traces

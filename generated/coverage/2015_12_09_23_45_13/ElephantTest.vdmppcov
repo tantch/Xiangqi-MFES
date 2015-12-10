@@ -1,0 +1,39 @@
+class ElephantTest
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+	brd: Board := new Board();
+operations
+
+	private assertTrue: bool ==> ()
+		assertTrue(cond) == return
+	pre cond;
+	private testFreeMovement: () ==> ()
+	testFreeMovement() == (
+	
+		dcl el: Elephant := new Elephant([3,1],<Red>);
+		brd.board := {
+			[3,1] |-> el
+		};
+		assertTrue(brd.board([3,1]).getCoord() = [3,1]);
+		assertTrue(brd.board([3,1]) = el);
+			
+		brd.moveTo([3,1],[5,3]);
+		
+		assertTrue(brd.board([5,3]).getCoord() = [5,3]);
+		assertTrue(brd.board([5,4]) = el);
+		
+	);
+	
+	
+	public static main: () ==> ()
+ 	main() == (
+		new ElephantTest().testFreeMovement();
+	);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end ElephantTest

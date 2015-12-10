@@ -1,4 +1,4 @@
-class General is subclass of Piece
+class Elephant is subclass of Piece
 types
 -- TODO Define types here
 values
@@ -6,23 +6,23 @@ values
 instance variables
 -- TODO Define instance variables here
 operations
-	public General : seq of nat1 * Color ==> General
-		General(a_coord,a_color) ==(
+	public Elephant : seq of nat1 * Color ==> Elephant
+		Elephant(a_coord,a_color) ==(
 			Piece(a_coord,a_color);
 		);
 	public canMoveTo : seq of nat1 ==> bool
 		canMoveTo(a_coord) ==(
-			if((abs(coord(1) - a_coord(1)) = 1 and coord(2) - a_coord(2) = 0 ) or (coord(1) - a_coord(1) = 0 and coord(2) - abs(a_coord(2)) = 1 ))
+			if((abs(coord(1) - a_coord(1)) = 2 and abs(coord(2) - a_coord(2)) = 2 ) )
 			then(
 				if(color = <Red>)
 				then(
-					if(a_coord(2) >= 1 and a_coord(2) <= 3 and a_coord(1) >=4 and a_coord(1) <=6)
+					if(a_coord(2) <= 5)
 					then(
 						return true;
 					)
 				)
 				else(
-					if(a_coord(2) >= 8 and a_coord(2) <= 10 and a_coord(1) >=4 and a_coord(1) <=6)
+					if(a_coord(2) >= 6)
 					then(
 						return true;
 					)
@@ -39,11 +39,11 @@ operations
 	public freeToMove : seq of nat1 * Board ==> bool
 	freeToMove(a_coord,board) == (
 
-			return true;
+			return board.isEmpty([a_coord(1)/2,a_coord(2)/2]);
 
 	);
 functions
 -- TODO Define functiones here
 traces
 -- TODO Define Combinatorial Test Traces here
-end General
+end Elephant

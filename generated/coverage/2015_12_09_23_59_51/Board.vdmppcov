@@ -24,7 +24,7 @@ operations
 	
 	public moveTo: seq of nat1 * seq of nat1 ==> ()
 	moveTo(coord1,coord2) ==(
-		if( board(coord1).canMoveTo(coord2) and board(coord1).freeToMove(coord2,self)) then(
+		if( board(coord1).canMoveTo(coord2)) then(
 			if(isEmpty(coord2)   ) then(
 				dcl pc1: Piece := board(coord1); 
 				pc1.moveTo(coord2);
