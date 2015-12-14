@@ -1,0 +1,23 @@
+class AllTests
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+operations
+	public static main: () ==> ()
+ 	main() == (
+		new TowerTest().testFreeMovement();
+		new AdvisorTest().testFreeMovement();
+		new ElephantTest().testFreeMovement();
+		new GeneralTest().testFreeMovement();
+		new SoldierTest().testFreeMovement();
+		new HorseTest().testFreeMovement();
+		new BoardTest().SimpleMoves();
+	);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end AllTests

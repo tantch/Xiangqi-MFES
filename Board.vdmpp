@@ -63,7 +63,7 @@ operations
 				pc1.moveTo(coord2);
 				board := board ++ { coord1 |-> nil};
 				board := board ++ { coord2 |-> pc1 };
-				board(coord1).moveTo(coord2);
+
 			);
 		);
 	)
