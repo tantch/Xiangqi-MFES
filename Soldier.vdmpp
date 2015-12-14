@@ -1,4 +1,4 @@
-lass Soldier is subclass of Piece
+class Soldier is subclass of Piece
 types
 -- TODO Define types here
 values
