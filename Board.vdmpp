@@ -10,6 +10,11 @@ instance variables
 	inv forall x in set dom board & x(1) in set {1,...,FILES} and x(2) in set {1,...,RANKS};
 	
 operations
+
+
+
+
+-- Initializes the board map with all the pieces in the correct position for a new game
  public init : () ==> ()
   init() ==
   (
@@ -48,7 +53,7 @@ operations
   	  [9,7] |-> new Soldier([9,7],<Black>)
   	};
   );
-	
+	--Moves a piece from one place to the other
 	public moveTo: seq of nat1 * seq of nat1 ==> ()
 	moveTo(coord1,coord2) ==(
 		if( board(coord1).canMoveTo(coord2) and board(coord1).freeToMove(coord2,self)) then(
@@ -69,16 +74,12 @@ operations
 	)
 	pre coord1 <> coord2 and coord1 in set dom board and board(coord1) <> nil and board(coord1).color = currentPlayer; --verificar cordandas dentro ods limites
 	
-	public getPiece : seq of nat1 ==> Piece
-	getPiece(coord) ==
-		return board(coord)
-	pre coord in set dom board and board(coord) <> nil;
-	
+	--Returns true if the piece in the coord position is of diferente color and therefore eatable
 	private isEatable : seq of nat1 ==> bool
 	isEatable(coord) == 
 		return currentPlayer <> board(coord).color
 	pre coord in set dom board and board(coord) <> nil;
-	
+	--Returns true if the position of coord has no piece
 	public isEmpty : seq of nat1 ==> bool
 	isEmpty(coord) == (
 		if(coord in set dom board) then (
@@ -87,7 +88,8 @@ operations
 		else(
 			return true;
 		)
-	);	 
+	);
+	--Set the curent player color	 
 	public setPlayer: Player ==> ()
 	setPlayer(plr) ==
 		currentPlayer := plr;

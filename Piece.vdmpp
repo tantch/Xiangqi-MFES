@@ -1,4 +1,7 @@
 class Piece
+/*
+class responsible for the variables and operations of all the subclasses(types of pieces in the game)
+*/
 types
 	public Color = <Black> | <Red>;
 values
@@ -12,20 +15,23 @@ operations
 		coord := a_coord;
 		color := a_color;
 	);
+	--returns the color of the piece
 	public getColor : () ==> Color 
   getColor() ==
   	return color;
-  	
+  --returns the coordinates of the piecee
   public getCoord : () ==> seq of nat1
 	getCoord() ==
 		return coord;	
-  	
+  -- returns bollean indicating if the movement is one which the piece should be able to make, regardless of the board current state
   public canMoveTo : seq of nat1 ==> bool
   canMoveTo(coor) ==
   	is subclass responsibility;
+  -- changes the coordiantes of the piece to coor
 	public moveTo : seq of nat1 ==> ()
   moveTo(coor) ==
   	is subclass responsibility;
+  -- returns bollean indicating if the piece is free to move considering the other pieces in the board
   public freeToMove : seq of nat1 * Board ==> bool
 	freeToMove(a_coord,board) ==
 	  	is subclass responsibility;
