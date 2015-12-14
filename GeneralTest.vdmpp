@@ -10,7 +10,7 @@ operations
 	private assertTrue: bool ==> ()
 		assertTrue(cond) == return
 	pre cond;
-	private testFreeMovement: () ==> ()
+	public testFreeMovement: () ==> ()
 	testFreeMovement() == (
 		
 		--Red

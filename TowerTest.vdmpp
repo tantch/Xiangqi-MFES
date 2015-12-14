@@ -6,7 +6,7 @@ operations
 	private assertTrue: bool ==> ()
 		assertTrue(cond) == return
 	pre cond;
-	private testFreeMovement: () ==> ()
+	public testFreeMovement: () ==> ()
 	testFreeMovement() == (
 		
 		--Red
@@ -42,9 +42,11 @@ operations
 		assertTrue(brd.board([5,6]).getCoord() = [5,6]);
 		assertTrue(brd.board([5,6]) = trB);
 		--move hor
-		brd.moveTo([5,6],[8,6]);
-		assertTrue(brd.board([8,6]).getCoord() = [8,6]);
-		assertTrue(brd.board([8,6]) = trB);
+		assertTrue(brd.board([5,6]).freeToMove([1,6],brd));
+		
+		brd.moveTo([5,6],[1,6]);
+		assertTrue(brd.board([1,6]).getCoord() = [1,6]);
+		assertTrue(brd.board([1,6]) = trB);
 		
 	);
 	

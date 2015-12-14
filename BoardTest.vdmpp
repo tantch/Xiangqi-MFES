@@ -1,0 +1,35 @@
+class BoardTest
+instance variables
+	brd: Board := new Board();
+operations
+
+	private assertTrue: bool ==> ()
+		assertTrue(cond) == return
+	pre cond;
+	public SimpleMoves: () ==> ()
+	SimpleMoves() == (
+	
+		dcl p1: Soldier;
+		brd.init();
+		p1 := brd.board([5,4]);
+		
+		--Comer uma peça
+		brd.moveTo([5,4],[5,5]);
+		brd.setPlayer(<Black>);
+		brd.moveTo([5,7],[5,6]);
+		brd.setPlayer(<Red>);
+		brd.moveTo([5,5],[5,6]);
+		assertTrue(brd.board([5,6]).getCoord() = [5,6]);
+		assertTrue(brd.board([5,6]) = p1);
+	);
+	
+	
+	public static main: () ==> ()
+ 	main() == (
+		new BoardTest().SimpleMoves();
+	);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end BoardTest
