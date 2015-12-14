@@ -1,6 +1,7 @@
 class CannonTest
 instance variables
 	brd: Board := new Board();
+	
 operations
 
 	private assertTrue: bool ==> ()
@@ -44,9 +45,76 @@ operations
 		assertTrue(brd.board([2,4]).getCoord() = [2,4]);
 		assertTrue(brd.board([2,4]) = canB);
 		--move hor
-		brd.moveTo([2,4],[6,4]);
-		assertTrue(brd.board([6,4]).getCoord() = [6,4]);
-		assertTrue(brd.board([6,4]) = canB);
+		brd.moveTo([2,4],[1,4]);
+		assertTrue(brd.board([1,4]).getCoord() = [1,4]);
+		assertTrue(brd.board([1,4]) = canB);
+		
+		
+		
+	);
+	
+	
+	public testEatMovement: () ==> ()
+	testEatMovement() == (
+		
+		--Red
+		
+		dcl canR: Cannon := new Cannon([4,3],<Red>);
+		dcl canB: Cannon := new Cannon([8,8],<Black>);
+		
+		dcl sol1: Soldier := new Soldier([4,4],<Red>);
+		dcl sol2: Soldier := new Soldier([4,6],<Black>);
+		
+		dcl sol3: Soldier := new Soldier([8,6],<Black>);
+		dcl sol4: Soldier := new Soldier([8,4],<Red>);
+		
+		dcl sol5: Soldier := new Soldier([5,6],<Red>);
+		dcl sol6: Soldier := new Soldier([7,6],<Black>);
+		
+		dcl sol7: Soldier := new Soldier([2,4],<Red>);
+		brd.board := {
+			[4,3] |-> canR,
+			[8,8] |-> canB,
+			[4,4] |-> sol1,
+			[4,6] |-> sol2,
+			[8,6] |-> sol3,
+			[8,4] |-> sol4,
+			[5,6] |-> sol5,
+			[7,6] |-> sol6,
+			[2,4] |-> sol7
+		};
+		assertTrue(brd.board([4,3]).getCoord() = [4,3]);
+		assertTrue(brd.board([4,3]) = canR);
+			
+		--eat vertically
+		brd.moveTo([4,3],[4,6]);
+		
+		assertTrue(brd.board([4,6]).getCoord() = [4,6]);
+		assertTrue(brd.board([4,6]) = canR);
+		--move hor
+		--assertTrue(brd.board([1,4]).freeToMove([4,4],brd));
+		brd.moveTo([4,6],[7,6]);
+		assertTrue(brd.board([7,6]).getCoord() = [7,6]);
+		assertTrue(brd.board([7,6]) = canR);
+		
+		brd.setPlayer(<Black>);
+		-- Black
+		
+			assertTrue(brd.board([8,8]).getCoord() = [8,8]);
+		assertTrue(brd.board([8,8]) = canB);
+			
+		--move vertically
+	--	assertTrue(brd.board([2,8]).canMoveTo([2,4]));
+		
+		brd.moveTo([8,8],[8,4]);
+		assertTrue(brd.board([8,4]).getCoord() = [8,4]);
+		assertTrue(brd.board([8,4]) = canB);
+		--move hor
+		brd.moveTo([8,4],[2,4]);
+		assertTrue(brd.board([2,4]).getCoord() = [2,4]);
+		assertTrue(brd.board([2,4]) = canB);
+		
+		
 		
 	);
 	
@@ -54,6 +122,7 @@ operations
 	public static main: () ==> ()
  	main() == (
 		new CannonTest().testFreeMovement();
+		new CannonTest().testEatMovement();
 	);
 functions
 -- TODO Define functiones here

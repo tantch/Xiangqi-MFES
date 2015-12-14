@@ -14,7 +14,9 @@ operations
 		new GeneralTest().testFreeMovement();
 		new SoldierTest().testFreeMovement();
 		new HorseTest().testFreeMovement();
+		new CannonTest().testFreeMovement();
 		new BoardTest().SimpleMoves();
+		new CannonTest().testEatMovement();
 	);
 functions
 -- TODO Define functiones here
