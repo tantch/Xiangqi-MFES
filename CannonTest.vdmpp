@@ -1,0 +1,62 @@
+class CannonTest
+instance variables
+	brd: Board := new Board();
+operations
+
+	private assertTrue: bool ==> ()
+		assertTrue(cond) == return
+	pre cond;
+	public testFreeMovement: () ==> ()
+	testFreeMovement() == (
+		
+		--Red
+		
+		dcl canR: Cannon := new Cannon([2,3],<Red>);
+		dcl canB: Cannon := new Cannon([2,8],<Black>);
+		brd.board := {
+			[2,3] |-> canR,
+			[2,8] |-> canB
+		};
+		assertTrue(brd.board([2,3]).getCoord() = [2,3]);
+		assertTrue(brd.board([2,3]) = canR);
+			
+		--move vertically
+		brd.moveTo([2,3],[2,6]);
+		
+		assertTrue(brd.board([2,6]).getCoord() = [2,6]);
+		assertTrue(brd.board([2,6]) = canR);
+		--move hor
+		--assertTrue(brd.board([1,4]).freeToMove([4,4],brd));
+		brd.moveTo([2,6],[6,6]);
+		assertTrue(brd.board([6,6]).getCoord() = [6,6]);
+		assertTrue(brd.board([6,6]) = canR);
+		
+		brd.setPlayer(<Black>);
+		-- Black
+		
+			assertTrue(brd.board([2,8]).getCoord() = [2,8]);
+		assertTrue(brd.board([2,8]) = canB);
+			
+		--move vertically
+	--	assertTrue(brd.board([2,8]).canMoveTo([2,4]));
+		
+		brd.moveTo([2,8],[2,4]);
+		assertTrue(brd.board([2,4]).getCoord() = [2,4]);
+		assertTrue(brd.board([2,4]) = canB);
+		--move hor
+		brd.moveTo([2,4],[6,4]);
+		assertTrue(brd.board([6,4]).getCoord() = [6,4]);
+		assertTrue(brd.board([6,4]) = canB);
+		
+	);
+	
+	
+	public static main: () ==> ()
+ 	main() == (
+		new CannonTest().testFreeMovement();
+	);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end CannonTest
