@@ -28,16 +28,16 @@ operations
 		if (a_coord(1) - coord(1) =0)
 			then(
 					if(a_coord(2) > coord(2)) then(
-						return (not exists p in set rng board.board  & p <> nil and p.getCoord()(2) in set {coord(2)+1,...,a_coord(2)-1});
+						return (not exists p in set rng board.board & p.getCoord()(2) in set {coord(2),...,a_coord(2)});
 					)else(
-						return (not exists p in set rng board.board &  p <> nil and  p.getCoord()(2) in set {a_coord(2)+1,...,coord(2)-1});
+						return (not exists p in set rng board.board & p.getCoord()(2) in set {a_coord(2),...,coord(2)});
 						)
 			)
 			else(
 					if(a_coord(1) > coord(1)) then(
-						return (not exists p in set rng board.board & p <> nil and p.getCoord()(1) in set {coord(1)+1,...,a_coord(1)-1});
+						return (not exists p in set rng board.board & p.getCoord()(1) in set {coord(1),...,a_coord(1)});
 					)else(
-						return (not exists p in set rng board.board & p <> nil and p.getCoord()(1) in set {a_coord(1)+1,...,coord(1)-1});
+						return (not exists p in set rng board.board & p.getCoord()(1) in set {a_coord(1),...,coord(1)});
 						)
 			)
 

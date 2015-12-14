@@ -22,25 +22,32 @@ operations
 		)
 	pre a_coord <> coord;
 	public freeToMove : seq of nat1 * Board ==> bool
-	freeToMove(a_coord,board) == (	
+	freeToMove(a_coord,board) == (
+	
+		dcl temp : nat1;
 		
 		
 		if (a_coord(1) - coord(1) =0)
+			then( 
+					temp := coord(2);
+					while(temp < a_coord(2))
+								do (temp := temp + 1;
+										if(not(board.isEmpty([coord(1),temp])))
+												then return false);
+					return true;
+			)
+			
+			else if(a_coord(2) - coord(2) =0)
 			then(
-					if(a_coord(2) > coord(2)) then(
-						return (not exists p in set rng board.board  & p <> nil and p.getCoord()(2) in set {coord(2)+1,...,a_coord(2)-1});
-					)else(
-						return (not exists p in set rng board.board &  p <> nil and  p.getCoord()(2) in set {a_coord(2)+1,...,coord(2)-1});
-						)
+					temp := coord(1);
+					while(temp < a_coord(1))
+								do (temp := temp + 1;
+										if(not(board.isEmpty([temp,coord(2)])))
+												then return false);
+					return true;
 			)
-			else(
-					if(a_coord(1) > coord(1)) then(
-						return (not exists p in set rng board.board & p <> nil and p.getCoord()(1) in set {coord(1)+1,...,a_coord(1)-1});
-					)else(
-						return (not exists p in set rng board.board & p <> nil and p.getCoord()(1) in set {a_coord(1)+1,...,coord(1)-1});
-						)
-			)
-
+			else
+			return false;
 		
 		
 		
