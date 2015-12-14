@@ -1,0 +1,52 @@
+class Elephant is subclass of Piece
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+operations
+	public Elephant : seq of nat1 * Color ==> Elephant
+		Elephant(a_coord,a_color) ==(
+			Piece(a_coord,a_color);
+		);
+	public canMoveTo : seq of nat1 ==> bool
+		canMoveTo(a_coord) ==(
+			if((abs(coord(1) - a_coord(1)) = 2 and abs(coord(2) - a_coord(2)) = 2 ) )
+			then(
+				if(color = <Red>)
+				then(
+					if(a_coord(2) <= 5)
+					then(
+						return true;
+					)
+				)
+				else(
+					if(a_coord(2) >= 6)
+					then(
+						return true;
+					)
+				)
+			);
+			return false;	 	
+		)
+	pre a_coord <> coord;
+	public moveTo : seq of nat1 ==> ()
+		moveTo(a_coord) ==(
+			coord := a_coord
+		)
+	pre a_coord <> coord;
+	public freeToMove : seq of nat1 * Board ==> bool
+	freeToMove(a_coord,board) == (
+			dcl t_coord: seq of nat1 := coord;
+			t_coord(1) := (a_coord(1) - coord(1)) /2  + coord(1);
+			t_coord(2) := (a_coord(2) - coord(2)) /2  + coord(2);
+			
+			return board.isEmpty([t_coord(1),t_coord(2)]);
+
+	);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Elephant

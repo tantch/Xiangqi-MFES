@@ -1,0 +1,79 @@
+class Soldier is subclass of Piece
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+operations
+	public Soldier : seq of nat1 * Color ==> Soldier
+		Soldier(a_coord,a_color) ==(
+			Piece(a_coord,a_color);
+		);
+	public canMoveTo : seq of nat1 ==> bool
+		canMoveTo(a_coord) ==(
+			if(color = <Red>)
+			then(
+				if(a_coord(2) >= 1 and a_coord(2) <= 5)
+				then(
+					if(abs(coord(1) - a_coord(1)) = 0 and ((a_coord(2) - coord(2)) = 1 ))
+					then(
+						if(a_coord(2) >= coord(2))
+							then(
+								return true;
+									)
+						)
+					)
+				else(
+					if( ((coord(1) - a_coord(1)) = 0 and (a_coord(2) - coord(2)) = 1)  or ((abs(a_coord(1) - coord(1)) = 1) and (coord(2) - a_coord(2)) = 0 ))
+					then(
+						if(a_coord(2) >= coord(2))
+							then(
+								return true;
+									)
+					)
+				)
+				)
+			else(
+				if(a_coord(2) >= 6 and a_coord(2) <= 10)
+				then(
+					if((coord(1) - a_coord(1) = 0) and ((coord(2) - a_coord(2)) = 1 ))
+					then(
+						if(coord(2) >= a_coord(2))
+							then(
+									return true;
+									)
+						)
+					)
+				else(
+					if( ((coord(1) - a_coord(1)) = 0 and (coord(2) - a_coord(2)) = 1)  or ((abs(a_coord(1) - coord(1)) = 1) and (coord(2) - a_coord(2)) = 0 ))
+					then(
+							if(coord(2) >= a_coord(2))
+							then(
+									return true;
+									)
+					)
+					)
+				);
+				return false;
+			)
+			
+	pre a_coord <> coord;
+	public moveTo : seq of nat1 ==> ()
+		moveTo(a_coord) ==(
+			coord := a_coord
+		)
+	pre a_coord <> coord;
+	public freeToMove : seq of nat1 * Board ==> bool
+	freeToMove(a_coord,board) == (
+
+			return true;
+
+	);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Soldier
+			
+			

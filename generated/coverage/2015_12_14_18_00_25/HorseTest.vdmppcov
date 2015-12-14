@@ -1,0 +1,54 @@
+class HorseTest
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+	brd: Board := new Board();
+operations
+
+	private assertTrue: bool ==> ()
+		assertTrue(cond) == return
+	pre cond;
+	private testFreeMovement: () ==> ()
+	testFreeMovement() == (
+		
+		--Red
+		
+		dcl horR: Horse := new Horse([2,3],<Red>);
+		dcl horB: Horse := new Horse([2,9],<Black>);
+		brd.board := {
+			[2,3] |-> horR,
+			[2,9] |-> horB
+		};
+		assertTrue(brd.board([2,3]).getCoord() = [2,3]);
+		assertTrue(brd.board([2,3]) = horR);
+			
+		brd.moveTo([2,3],[4,2]);
+		
+		assertTrue(brd.board([4,2]).getCoord() = [4,2]);
+		assertTrue(brd.board([4,2]) = horR);
+		
+		
+		brd.setPlayer(<Black>);
+		-- Black
+		
+		assertTrue(brd.board([2,9]).getCoord() = [2,9]);
+		assertTrue(brd.board([2,9]) = horB);
+			
+		brd.moveTo([2,9],[1,7]);
+		
+		assertTrue(brd.board([1,7]).getCoord() = [1,7]);
+		assertTrue(brd.board([1,7]) = horB);
+	);
+	
+	
+	public static main: () ==> ()
+ 	main() == (
+		new HorseTest().testFreeMovement();
+	);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end HorseTest
