@@ -1,0 +1,98 @@
+class Board
+types
+	public Player = <Black> | <Red>;
+values
+	public FILES = 9; -- width
+	public RANKS = 10; --length
+instance variables
+	private currentPlayer: Player := <Red>;
+	public board: map seq of nat1 to [Piece] := {|->};
+	inv forall x in set dom board & x(1) in set {1,...,FILES} and x(2) in set {1,...,RANKS};
+	
+operations
+ public init : () ==> ()
+  init() ==
+  (
+  	board := {
+  		[1,1] |-> new Tower([1,1],<Red>),
+  		[2,1] |-> new Horse([2,1],<Red>),
+  		[3,1] |-> new Elephant([3,1],<Red>),
+  		[4,1] |-> new Advisor([4,1],<Red>),
+  		[5,1] |-> new General([5,1],<Red>),
+  	  [6,1] |-> new Advisor([6,1],<Red>),
+  	  [7,1] |-> new Elephant([7,1],<Red>),
+  	  [8,1] |-> new Horse([8,1],<Red>),
+  		[9,1] |-> new Tower([9,1],<Red>),
+  		[2,3] |-> new Cannon([2,3],<Red>),
+  		[8,3] |-> new Cannon([8,3],<Red>),
+  		[1,4] |-> new Soldier([1,4],<Red>),
+  		[3,4] |-> new Soldier([3,4],<Red>),
+  		[5,4] |-> new Soldier([5,4],<Red>),
+  	  [7,4] |-> new Soldier([7,4],<Red>),
+  	  [9,4] |-> new Soldier([9,4],<Red>),
+  	  [1,10] |-> new Tower([1,10],<Black>),
+  		[2,10] |-> new Horse([2,10],<Black>),
+  		[3,10] |-> new Elephant([3,10],<Black>),
+  		[4,10] |-> new Advisor([4,10],<Black>),
+  		[5,10] |-> new General([5,10],<Black>),
+  	  [6,10] |-> new Advisor([6,10],<Black>),
+  	  [7,10] |-> new Elephant([7,10],<Black>),
+  	  [8,10] |-> new Horse([8,10],<Black>),
+  		[9,10] |-> new Tower([9,10],<Black>),
+  		[2,8] |-> new Cannon([2,8],<Black>),
+  		[8,8] |-> new Cannon([8,8],<Black>),
+  		[1,7] |-> new Soldier([1,7],<Black>),
+  		[3,7] |-> new Soldier([3,7],<Black>),
+  		[5,7] |-> new Soldier([5,7],<Black>),
+  	  [7,7] |-> new Soldier([7,7],<Black>),
+  	  [9,7] |-> new Soldier([9,7],<Black>)
+  	};
+  );
+	
+	public moveTo: seq of nat1 * seq of nat1 ==> ()
+	moveTo(coord1,coord2) ==(
+		if( board(coord1).canMoveTo(coord2) and board(coord1).freeToMove(coord2,self)) then(
+			if(isEmpty(coord2)   ) then(
+				dcl pc1: Piece := board(coord1); 
+				pc1.moveTo(coord2);
+				board := board ++ { coord1 |-> nil};
+				board := board ++ { coord2 |-> pc1 };
+			)
+			else if(isEatable(coord2) ) then(
+				dcl pc1: Piece := board(coord1); 
+				pc1.moveTo(coord2);
+				board := board ++ { coord1 |-> nil};
+				board := board ++ { coord2 |-> pc1 };
+				board(coord1).moveTo(coord2);
+			);
+		);
+	)
+	pre coord1 <> coord2 and coord1 in set dom board and board(coord1) <> nil and board(coord1).color = currentPlayer; --verificar cordandas dentro ods limites
+	
+	public getPiece : seq of nat1 ==> Piece
+	getPiece(coord) ==
+		return board(coord)
+	pre coord in set dom board and board(coord) <> nil;
+	
+	private isEatable : seq of nat1 ==> bool
+	isEatable(coord) == 
+		return currentPlayer <> board(coord).color
+	pre coord in set dom board and board(coord) <> nil;
+	
+	public isEmpty : seq of nat1 ==> bool
+	isEmpty(coord) == (
+		if(coord in set dom board) then (
+			return board(coord) = nil;
+		)
+		else(
+			return true;
+		)
+	);	 
+	public setPlayer: Player ==> ()
+	setPlayer(plr) ==
+		currentPlayer := plr;
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Board
